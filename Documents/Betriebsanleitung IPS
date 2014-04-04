@@ -1,0 +1,95 @@
+Funktion
+Das Indoor Positioning System dient zur Positionsbestimmung eines Flugobjekten vor allem in Situationen, in denen Ortung per GPS aufgrund der Signaldämpfung durch Decken und Wände nicht möglich oder aus anderen Gründen ungünstig ist.
+Dieser Artikel enthält alle wichtigen Informationen zur Funktionsweise sowie detaillierte Anweisungen zur Inbetriebnahme des Systems.
+
+*Bilderreihe 'Graphiken zur Funktionsveranschaulichung'*
+
+Das Indoor Positioning System basiert auf der Laufzeitmessung von Ultraschallwellen. Gleichzeitig vom Flugobjekt ausgesandte Infrarot- und Ultraschallsignale werden von fest installierten Bodenstationen empfangen. Die dabei auftretende Zeitdifferenz zwischen der Ankunft des Infrarotsignals und des Ultraschallsignals wird an die Basisstation durch Funkübertragung weitergeleitet. Dort kann aus den übertragenen Daten mittels Triangulationsverfahren die Position des Flugobjektes bestimmt werden. 
+
+
+Hardware
+
+	Bestandsliste:
+		6 Bodenstationen
+		1 Gondelmodul
+		1 Basismodul (+Funkmodul mit Antenne)
+
+		7 Akkus
+
+	Bodenstationen
+		Die Bodenstationen empfangen die von der Gondel ausgesandten Impulse und leitet die gemessene Zeitdifferenz zwischen Infrarot- und Ultraschallimpuls an das Basismodul weiter.
+
+		Microcontroller: 	ATmega8
+		Funkmodul: 			NRF24L01
+
+	Gondelmodul
+		Das Gondelmodul ist am Blimp selbst angebracht und ist für die Erzeugung der zur Positionsbestimmung notwendigen Ultraschall- und Infrarotimpulse zuständig. Dazu werden je sechs ringförmig angeordnete, parallel verschaltete Ultraschallwandler und Infrarot-LED verwendet. Die Ultraschallwandler werden über die H-Brücke eines mMotortreibers angesteuert. Die Infrarot-LEDs sind für eine Spannung von 5 Volt ausgelegt und sollten nicht direkt an einem Mikrocontrollerpin betrieben werden, da kurzzeitig Ströme von 100 mA fließen. Hier ist eine einfache Transistorschaltung zweckmäßig.
+
+		Microcontroller:	ATmega328
+		Funkmodul:			NRF24L01
+		Ultraschalltreiber:	Sparkfun Motor Driver 1A Dual TB6612FNG
+
+
+	Basismodul
+		Das Basismodul leitet die von den Bodenstationen gemessenen Daten an den angeschlossenen Computer weiter und sendet Steuerbefehle an das Gondelmodul. Zur Verbesserung der Funkverbindung kann eine Antenne verwendet werden.
+
+		Microcontroller:	ATmega328
+		Funkmodul:			NRF24L01
+
+	Akkus
+
+Software
+	
+	Die Software des Indoor Positioning System lässt sich in fünf Bereiche eineilen:
+		Microcontroller-Software der Gondel, Bodenstationen und Basisstation
+		Zentrales Python-Script
+		C-Skript zur Positionsberechnung
+		Steuerungssoftware für das Flugobjekt
+		GTK+3 GUI
+	Diese werden hier näher betrachtet.	
+
+	Arduino-Sketches
+		basis.ino
+		empfaenger.ino
+		Die Arduino Programme müssen in Arduino 1.0.1 kompiliert werden. Dazu muss die mirf.h-Library im Arduino Library Verzeichnis vorhanden sein
+
+	ips.py 
+	Das 
+
+	mirf.h
+
+	multilat.c
+	(Liste der Dateien)
+	(Liste der zum kompilieren notwendigen Schritte)
+
+
+
+Konfigurieren mit individueller Navigationssoftware
+
+
+Betriebsanleitung IPS	(indoor positioning system)
+
+	1. Vorbereitung
+
+	- Aufladen der Akkus
+	- Kontrolle ob alle Teile die aktuelle/gleiche Version der Software verwenden
+	- 
+
+
+	2. Aufbau
+
+	- Bodenstationen an Akkus anschließen und positionieren
+	- Basisstation an Rechner anschließen und '........' starten
+	- Testlauf
+
+	3. Testlauf
+
+
+Links:
+
+	intern: bisherige IPS Projekte:
+
+	extern:
+		arduino
+		python
+		
